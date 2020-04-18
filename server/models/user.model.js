@@ -40,26 +40,26 @@ const userSchema = new mongoose.Schema({
     }
 })
 
-userSchema.pre('save', function(next) {
-    var user = this;
+// userSchema.pre('save', function(next) {
+//     var user = this;
 
-    if(user.isModified('password')) {
-        bcrypt.genSalt(10, function(err, salt) {
-            if (err) {
-                return next(err)
-            }
+//     if(user.isModified('password')) {
+//         bcrypt.genSalt(10, function(err, salt) {
+//             if (err) {
+//                 return next(err)
+//             }
 
-            bcrypt.hash(user.password, salt, function(err, hashedPassword) {
-                if (err) {
-                    return next(err)
-                }
-                user.password = hashedPassword
-                next();
-            })
-        })
-    } else {
-        next()
-    }
-})
+//             bcrypt.hash(user.password, salt, function(err, hashedPassword) {
+//                 if (err) {
+//                     return next(err)
+//                 }
+//                 user.password = hashedPassword
+//                 next();
+//             })
+//         })
+//     } else {
+//         next()
+//     }
+// })
 
 module.exports = mongoose.model('User', userSchema)
