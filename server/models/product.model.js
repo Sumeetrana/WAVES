@@ -32,7 +32,7 @@ const productSchema = new mongoose.Schema({
     },
     wood: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Brand',
+        ref: 'Wood',
         required: true
     },
     frets: {

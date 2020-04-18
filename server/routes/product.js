@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router();
+const mongoose = require('mongoose')
 
 const auth = require('../middleware/auth')
 const admin = require('../middleware/admin')
@@ -54,6 +55,30 @@ router.get('/allwoods', (req, res) => {
         }
         res.status(200).send(woods)
     })
+})
+
+// api/product/article?id=HBHBHA,AHBHA,AJSHAJA,HJASAJ&type=array
+router.get('/article_by_id', (req, res) => {
+    let type = req.query.type;
+    let items = req.query.id;
+    let ids = items.split(',')
+    // if (type === 'array') {
+    //     let ids = req.query.type.split(',');
+    //     items = []
+    //     items = ids.map(item => {
+    //         return mongoose.Types.ObjectId.createFromHexString(item)
+    //     })
+    // }
+    console.log(ids);
+    
+    Product.find({ 
+        '_id': {$in:ids}
+     }).
+     populate('brand').
+     populate('wood').
+     exec((err, docs) => {
+        return res.status(200).send(docs)
+     })
 })
 
 router.post('/article', (req, res) => {
