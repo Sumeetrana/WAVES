@@ -1,5 +1,6 @@
+require('dotenv/config')
 const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -61,5 +62,19 @@ const userSchema = new mongoose.Schema({
 //         next()
 //     }
 // })
+
+userSchema.statics.findByToken = async function(token, cb) {
+    let user = this;
+
+    jwt.verify(token, process.env.SECRET, (err, decode) => {
+        user.findOne({ "_id": decode, "token": token }, (err, user) => {
+            if (err) {
+                return cb(err)
+            }
+            cb(null, user)
+        })
+    })
+    
+}
 
 module.exports = mongoose.model('User', userSchema)
