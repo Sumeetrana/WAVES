@@ -95,4 +95,27 @@ router.post('/article', (req, res) => {
     })
 })
 
+// BY ARRIVAL
+// /article?sortBy=createdAt&order=desc&limit=4
+
+// BY SELL
+// /article?sortBy=SOLD&order=desc&limit=4
+router.get('/articles', (req, res) => {
+    let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
+    let order = req.query.order ? req.query.order : "asc";
+    let limit = req.query.limit ? parseInt(req.query.limit) : 100
+
+    Product.
+    find().
+    populate('brand').
+    populate('wood').
+    sort([[sortBy, order]]).
+    limit(limit).
+    exec((err, articles) => {
+        if (err) {
+            return res.status(400).json(err)
+        }
+        res.send(articles)
+    }) 
+})
 module.exports = router
