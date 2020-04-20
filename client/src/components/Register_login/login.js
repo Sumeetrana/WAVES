@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Formfield from '../utils/Forms/formfield'
+import { update } from '../utils/Forms/formActions'
 
 class login extends Component {
     state = {
@@ -16,7 +17,7 @@ class login extends Component {
                 },
                 validation: {
                     required: true,
-                    email: true
+                    email: true                    
                 },
                 valid: true,
                 touched: true,
@@ -40,9 +41,15 @@ class login extends Component {
         }
     }
 
-    handleChange = () => {
-
+    updateForm = (element) => {
+        const newFormData = update(element, this.state.formdata, 'login')
+        this.setState({
+            formError: false,
+            formdata: newFormData
+        })
     }
+
+    
 
     submitForm = () => {
 
@@ -53,9 +60,15 @@ class login extends Component {
             <div className="signin_wrapper">
                 <form onSubmit={this.submitForm}>
                     <Formfield 
-                        id={'email'}
+                        id="email"
                         formdata={this.state.formdata.email}
-                        change={this.handleChange}
+                        change={(element) => this.updateForm(element)}
+                    />
+
+                    <Formfield 
+                        id="password"
+                        formdata={this.state.formdata.password}
+                        change={(element) => this.updateForm(element)}
                     />
                 </form>
             </div>
