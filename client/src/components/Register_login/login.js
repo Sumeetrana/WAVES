@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Formfield from '../utils/Forms/formfield'
-import { update } from '../utils/Forms/formActions'
+import { update, generateData, isFormValid } from '../utils/Forms/formActions'
 
 class login extends Component {
     state = {
@@ -19,7 +19,7 @@ class login extends Component {
                     required: true,
                     email: true                    
                 },
-                valid: true,
+                valid: false,
                 touched: true,
                 validationMessage: ''
             },
@@ -34,7 +34,7 @@ class login extends Component {
                 validation: {
                     required: true                    
                 },
-                valid: true,
+                valid: false,
                 touched: true,
                 validationMessage: ''
             }
@@ -51,8 +51,21 @@ class login extends Component {
 
     
 
-    submitForm = () => {
+    submitForm = (e) => {
+        e.preventDefault()
 
+        let dataToSubmit = generateData(this.state.formdata, 'login')
+        let formIsValid = isFormValid(this.state.formdata, 'login')
+
+        if (formIsValid) {
+            console.log(dataToSubmit);
+        } else {
+            this.setState({
+                formError: true
+            })
+        }
+        
+        
     }
 
     render() {
@@ -60,16 +73,26 @@ class login extends Component {
             <div className="signin_wrapper">
                 <form onSubmit={this.submitForm}>
                     <Formfield 
-                        id="email"
+                        id={"email"}
                         formdata={this.state.formdata.email}
                         change={(element) => this.updateForm(element)}
                     />
 
                     <Formfield 
-                        id="password"
+                        id={"password"}
                         formdata={this.state.formdata.password}
                         change={(element) => this.updateForm(element)}
                     />
+
+                    {
+                        this.state.formError ?
+                            <div className="error_label">
+                                Please check you data
+                            </div>
+                    : null 
+                    }
+
+                    <button type="submit">Login</button>
                 </form>
             </div>
         );
