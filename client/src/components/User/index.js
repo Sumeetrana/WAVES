@@ -2,16 +2,18 @@ import React from 'react'
 import UserLayout from '../../hoc/userLayout'
 import MyButton from '../utils/button'
 
-function UserDashBoard() {
+function UserDashBoard(props) {
+    console.log(props);
+    
     return (
         <UserLayout>
             <div>
-                <div className="username_nfo_panel">
+                <div className="user_nfo_panel">
                     <h1>User Information</h1>
                     <div>
-                        <span>name</span>
-                        <span>lastname</span>
-                        <span>email</span>
+                        <span>{props.user.userData.name}</span>
+                        <span>{props.user.userData.lastname}</span>
+                        <span>{props.user.userData.email}</span>
                     </div>
                     <MyButton 
                         type="default"
