@@ -12,6 +12,10 @@ class Shop extends Component {
         this.props.dispatch(getWoods()).then(response => console.log(this.props.products.woods))
     }
 
+    handleFilters = () => {
+        
+    }
+
     render() {
         const products = this.props.products
         return (
@@ -22,7 +26,12 @@ class Shop extends Component {
                 <div className="container">
                     <div className="shop_wrapper">
                         <div className="left">
-                            left
+                            <CollapseCheckbox
+                                initState={true}
+                                title="Brands"
+                                list={products.brands}
+                                handleFilters={(filter)=>this.handleFilters(filter, 'brand')}
+                            />
                         </div>
                         <div className="right">
                             right
