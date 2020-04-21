@@ -4,6 +4,7 @@ import PageTop from '../utils/page_top'
 import { connect } from 'react-redux'
 import { getBrands, getWoods } from '../../actions/product_actions'
 
+import CollapseCheckbox from '../utils/collapseCheckbox'
 class Shop extends Component {
 
     componentDidMount() {
