@@ -39,6 +39,53 @@ const formfield = ({formdata, change, id}) => {
                     </div>
                 )
             break;
+
+            case('textarea') :
+                formTemplate = (
+                    <div className="formBlock">
+                        { formdata.showLabel ? 
+                            <div className="label_inputs">
+                                {formdata.config.label}
+                            </div>
+                        : null}
+                        <textarea 
+                            {...formdata.config}
+                            value={formdata.value}
+                            onBlur={(event) => change({event, id, blur: true})}
+                            onChange={(event) => change({event,id})}
+                        />
+                        {showError()}
+                    </div>
+            )
+            break;
+
+            case('select'):
+                formTemplate = (
+                  <div className="formBlock">
+                    {formdata.showLabel ? (
+                      <div className="label_inputs">
+                        {formdata.config.label}
+                      </div>
+                    ) : null}
+                    <select
+                        value={formdata.value}
+                        onBlur={(event) => change({event, id, blur: true})}
+                        onChange={(event) => change({event,id})}
+                    >
+                        <option value="">Select One</option>
+                        {
+                            formdata.config.options.map(item=>(
+                                <option key={item.key} value={item.key}>
+                                    {item.value}
+                                </option>
+                            ))
+                        }
+                    </select>
+                    {showError()}
+                  </div>
+                );
+            break;
+
             default: 
                 formTemplate = null
         }
