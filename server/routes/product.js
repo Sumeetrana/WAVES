@@ -140,6 +140,7 @@ router.post('/shop', (req, res) => {
         
     }
     
+    findArgs['publish'] = true
     
     Product.
     find(findArgs).
