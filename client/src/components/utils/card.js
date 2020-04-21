@@ -27,32 +27,35 @@ class Card extends Component {
                         <div className="name">{props.name}</div>
                         <div className="price">${props.price}</div>
                     </div>
-                </div>
-                {
-                    props.grid ?
-                        <div className="description">
-                            kajbhjabshbjandhsbvnka
+                
+                    {
+                        props.grid ?
+                            <div className="description">
+                                <p>
+                                    {props.description}
+                                </p>
+                            </div>
+                        : null
+                    }
+                    <div className="actions">
+                        <div className="button_wrapp">
+                            <MyButton
+                                type="default"
+                                altClass="card_link"
+                                title= "View Product"
+                                linkTo={`/product_detail/${props._id}`}
+                                addStyles={{
+                                    margin: '10px 0 0 0'
+                                }}
+                            />
                         </div>
-                    : null
-                }
-                <div className="actions">
-                    <div className="button_wrapp">
-                        <MyButton
-                            type="default"
-                            altClass="card_link"
-                            title= "View Product"
-                            linkTo={`/product_detail/${props._id}`}
-                            addStyles={{
-                                margin: '10px 0 0 0'
-                            }}
-                        />
-                    </div>
-                    <div className="button_wrapp">
-                        <MyButton
-                            type="bag_link"
-                            runAction={() => console.log("Added to cart")
-                            }
-                        />
+                        <div className="button_wrapp">
+                            <MyButton
+                                type="bag_link"
+                                runAction={() => console.log("Added to cart")
+                                }
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
