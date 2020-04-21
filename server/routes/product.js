@@ -118,4 +118,35 @@ router.get('/articles', (req, res) => {
         res.send(articles)
     }) 
 })
+
+router.post('/shop', (req, res) => {
+    let order = req.body.order ? req.body.order : "desc"
+    let sortBy = req.body.sortBy ? req.body.sortBy : "_id"
+    let limit = req.body.limit ? parseInt(req.body.limit) : 100
+    let skip = parseInt(req.body.skip)
+    let findArgs = {}
+
+    for(let key in req.body.filters) {
+        if (req.body.filters[key] === 'prices') {
+            $gte: req.body.filters['prices'][0]
+            $lte: req.body.filters['prices'][1]
+        } else {
+            findArgs[key] = req.body.filters[key]
+        }
+    }
+
+    Product.
+    find(findArgs).
+    populate('brand'). 
+    populate('wood'). 
+    sort([[sortBy, order]]).
+    skip(skip).
+    limit(limit).
+    exec(() => {
+        
+    })
+
+    res.status(200)
+    
+})
 module.exports = router
