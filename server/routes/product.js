@@ -127,14 +127,20 @@ router.post('/shop', (req, res) => {
     let findArgs = {}
 
     for(let key in req.body.filters) {
-        if (req.body.filters[key] === 'prices') {
-            $gte: req.body.filters['prices'][0]
-            $lte: req.body.filters['prices'][1]
-        } else {
-            findArgs[key] = req.body.filters[key]
+        if (req.body.filters[key].length > 0) {
+            if (key === 'price') {
+                findArgs[key] = {
+                    $gte: req.body.filters[key][0],
+                    $lte: req.body.filters[key][1]
+                }
+            } else {
+                findArgs[key] = req.body.filters[key]
+            }
         }
+        
     }
-
+    
+    
     Product.
     find(findArgs).
     populate('brand'). 
@@ -142,8 +148,15 @@ router.post('/shop', (req, res) => {
     sort([[sortBy, order]]).
     skip(skip).
     limit(limit).
-    exec(() => {
+    exec((err, articles) => {
+        if (err) {
+            return res.status(400).send(err)
+        }
         
+        res.status(200).json({
+            size: articles.length,
+            articles: articles
+        })
     })
 
     res.status(200)
