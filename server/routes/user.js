@@ -95,4 +95,15 @@ router.post('/uploadimage', auth, admin, formidable(), (req, res) => {
     })
 })
 
+router.get('/removeimage', auth, admin, (req ,res) => {
+    let image_id =req.query.public_id;
+
+    cloudinary.uploader.destroy(image_id, (err, result) => {
+        if (err) {
+            return res.json({success: false, err})
+        }
+        res.status(200).send('ok')
+    })
+})
+
 module.exports = router 
