@@ -5,6 +5,7 @@ const { hash, compare } = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const formidable = require('express-formidable')
 const cloudinary = require('cloudinary')
+const mongoose = require('mongoose')
 
 const User = require('../models/user.model')
 const auth = require('../middleware/auth')
@@ -103,6 +104,38 @@ router.get('/removeimage', auth, admin, (req ,res) => {
             return res.json({success: false, err})
         }
         res.status(200).send('ok')
+    })
+})
+
+router.post('/addToCart', auth, (req, res) => {
+    User.findOne({_id: req.user._id}, (err, doc) => {
+        let duplicate = false
+        
+        doc.cart.forEach(item => {
+            if (item.id == req.query.productId) {
+                duplicate = true
+            }
+        })
+
+        if (duplicate) {
+            
+        } else {
+            User.findOneAndUpdate(
+                {_id: req.user._id},
+                { $push: { cart: {
+                    id: mongoose.Types.ObjectId(req.query.productId),
+                    quantity: 1,
+                    date: Date.now()
+                }} },
+                { new: true },
+                (err, doc) => {
+                    if (err) {
+                        return res.json({ success: false, err })
+                    }
+                    res.status(200).json(doc.cart)
+                }
+            )
+        }
     })
 })
 
