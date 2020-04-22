@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 
 import { getProductDetail, clearProductDetail } from '../../actions/product_actions'
 import ProdInfo from './prodNfo'
+import ProdImg from './prodImg'
 
 class index extends Component {
 
@@ -32,7 +33,11 @@ class index extends Component {
                         this.props.products.prodDetail ?
                             <div className="product_detail_wrapper">
                                 <div className="left">
-                                    images
+                                    <div style={{width:'500px'}}>
+                                        <ProdImg 
+                                            detail={this.props.products.prodDetail}
+                                        />
+                                    </div>
                                 </div>
                                 <div className="right">
                                     <ProdInfo

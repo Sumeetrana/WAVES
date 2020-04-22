@@ -703,6 +703,7 @@ footer .business_nfo .nfo {
 .product_detail_wrapper .main_thumbs {
 
     margin-top: 10px;
+    height: 200px !important;
 }
 
 
