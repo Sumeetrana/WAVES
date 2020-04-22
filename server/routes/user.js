@@ -118,6 +118,17 @@ router.post('/addToCart', auth, (req, res) => {
         })
 
         if (duplicate) {
+            User.findOneAndUpdate(
+                { _id: req.user._id, "card.id": mongoose.Types.ObjectId(req.query.productId)},
+                { $inc: {'card.$.quantity': 1} },
+                {new: true},
+                (err, doc) => {
+                    if (err) {
+                        return res.json({ success: false, err })
+                    }
+                    res.status(200).json(doc.cart)
+                }
+            )
             
         } else {
             User.findOneAndUpdate(

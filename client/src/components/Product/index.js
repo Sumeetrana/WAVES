@@ -4,6 +4,7 @@ import PageTop from '../utils/page_top'
 import { connect } from 'react-redux'
 
 import { getProductDetail, clearProductDetail } from '../../actions/product_actions'
+import { addToCart } from '../../actions/user_actions'
 import ProdInfo from './prodNfo'
 import ProdImg from './prodImg'
 
@@ -20,6 +21,11 @@ class index extends Component {
 
     componentWillUnmount() {
         this.props.dispatch(clearProductDetail())
+    }
+
+    addToCartHandler = (id) => {
+        this.props.dispatch(addToCart(id))
+        
     }
 
     render() {
