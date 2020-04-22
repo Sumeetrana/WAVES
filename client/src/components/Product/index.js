@@ -4,6 +4,7 @@ import PageTop from '../utils/page_top'
 import { connect } from 'react-redux'
 
 import { getProductDetail, clearProductDetail } from '../../actions/product_actions'
+import ProdInfo from './prodNfo'
 
 class index extends Component {
 
@@ -23,7 +24,26 @@ class index extends Component {
     render() {
         return (
             <div>
-                Product
+                <PageTop 
+                    title="Product detail"
+                />
+                <div className="container">
+                    {
+                        this.props.products.prodDetail ?
+                            <div className="product_detail_wrapper">
+                                <div className="left">
+                                    images
+                                </div>
+                                <div className="right">
+                                    <ProdInfo
+                                        addToCart={(id)=>this.addToCartHandler(id)} 
+                                        detail={this.props.products.prodDetail}
+                                    />
+                                </div>
+                            </div>
+                        : 'Loading..'
+                    }
+                </div>
             </div>
         );
     }
