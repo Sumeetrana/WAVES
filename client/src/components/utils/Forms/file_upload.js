@@ -27,11 +27,14 @@ class FileUpload  extends Component {
 
         axios.post('/api/user/uploadimage', formdata, config)
             .then(response => {
-                console.log(response);
+                console.log(response.data);
                 
                 this.setState({
                     uploading: false,
-                    uploadedFiles: response.data
+                    uploadedFiles: [
+                        ...this.state.uploadedFiles,
+                        response.data
+                    ]
                 }, () => {
                     this.props.imagesHandler(this.state.uploadedFiles)
                 })
@@ -39,9 +42,27 @@ class FileUpload  extends Component {
         
     }
 
-    showUploadedImages = () => {
+    onRemove = (id) => {
 
     }
+
+    showUploadedImages = () => (
+        this.state.uploadedFiles.map(item=>(
+            <div
+              className="dropzone_box"
+              key={item.public_id}
+              onClick={() => this.onRemove(item.public_id)}
+            >
+              <div className="wrap"
+                style={{
+                    background: `url(${item.url}) no-repeat`
+                }}
+              >
+                
+              </div>
+            </div>
+        ))
+    )
 
     render() {
         return (
@@ -59,7 +80,12 @@ class FileUpload  extends Component {
                                 />
                             </div>
                         </Dropzone>
-                        {this.showUploadedImages()}
+                        {
+                            console.log(this.state.uploadedFiles)
+                        }
+                        {
+                            this.showUploadedImages()
+                        }
                         {
                             this.state.uploading ?
                                 <div className="dropzone_box" style={{
