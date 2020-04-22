@@ -3,6 +3,7 @@ import UserLayout from '../../../hoc/userLayout'
 
 import Formfield from '../../utils/Forms/formfield'
 import { update, generateData, isFormValid, populateOptionFields, resetFields } from '../../utils/Forms/formActions'
+import FileUpload from '../../utils/Forms/file_upload'
 
 import { connect } from 'react-redux'
 import { getBrands, getWoods, addProduct, clearProduct } from '../../../actions/product_actions'
@@ -26,7 +27,7 @@ class AddProduct extends Component {
                     required: true                                   
                 },
                 valid: false,
-                touched: true,
+                touched: false,
                 validationMessage: '',
                 showLabel: true
             },
@@ -43,7 +44,7 @@ class AddProduct extends Component {
                     required: true                                   
                 },
                 valid: false,
-                touched: true,
+                touched: false,
                 validationMessage: '',
                 showLabel: true
             },
@@ -60,7 +61,7 @@ class AddProduct extends Component {
                     required: true                                   
                 },
                 valid: false,
-                touched: true,
+                touched: false,
                 validationMessage: '',
                 showLabel: true
             },
@@ -76,7 +77,7 @@ class AddProduct extends Component {
                     required: true                                   
                 },
                 valid: false,
-                touched: true,
+                touched: false,
                 validationMessage: '',
                 showLabel: true
             },
@@ -96,7 +97,7 @@ class AddProduct extends Component {
                     required: true                                   
                 },
                 valid: false,
-                touched: true,
+                touched: false,
                 validationMessage: '',
                 showLabel: true
             },
@@ -116,7 +117,7 @@ class AddProduct extends Component {
                     required: true                                   
                 },
                 valid: false,
-                touched: true,
+                touched: false,
                 validationMessage: '',
                 showLabel: true
             },
@@ -132,7 +133,7 @@ class AddProduct extends Component {
                     required: true                                   
                 },
                 valid: false,
-                touched: true,
+                touched: false,
                 validationMessage: '',
                 showLabel: true
             },
@@ -153,7 +154,7 @@ class AddProduct extends Component {
                     required: true                                   
                 },
                 valid: false,
-                touched: true,
+                touched: false,
                 validationMessage: '',
                 showLabel: true
             },
@@ -173,9 +174,19 @@ class AddProduct extends Component {
                     required: true                                   
                 },
                 valid: false,
-                touched: true,
+                touched: false,
                 validationMessage: '',
                 showLabel: true
+            },
+            images: {
+                value:[],
+                validation: {
+                    required: false
+                },
+                valid: true,
+                touched: false,
+                validationMessage: '',
+                showLabel: false
             },
         }
     }
@@ -250,6 +261,10 @@ class AddProduct extends Component {
         }
     }
 
+    imagesHandler = () => {
+
+    }
+
     render() {
         return (
           <UserLayout>
@@ -257,6 +272,12 @@ class AddProduct extends Component {
               <h1>Add product</h1>
 
               <form onSubmit={this.submitForm}>
+
+                <FileUpload 
+                    imagesHandler={(images) => this.imagesHandler(images)}
+                    reset={this.state.formSuccess}
+                />
+
                 <Formfield
                   id="name"
                   formdata={this.state.formdata.name}
