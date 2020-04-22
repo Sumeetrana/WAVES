@@ -3,9 +3,12 @@ const express = require('express')
 const router = express.Router();
 const { hash, compare } = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const formidable = require('express-formidable')
+const cloudinary = require('cloudinary')
 
 const User = require('../models/user.model')
 const auth = require('../middleware/auth')
+const admin = require('../middleware/admin')
 
 router.post('/register', async (req, res) => {
         const { email, password, name, lastname } = req.body
@@ -76,6 +79,19 @@ router.get('/logout', auth ,(req, res) => {
         return res.status(200).send({
             success: true
         })
+    })
+})
+
+router.post('/uploadimage', auth, admin, formidable(), (req, res) => {
+    cloudinary.uploader.upload(req.files.file.path, (result) => {
+        console.log(result);
+        res.status(200).send({
+            public_id: result.public_id,
+            url: result.url
+        })
+    }, {
+        public_id: `${Date.now()}`,
+        resource_type: 'auto'
     })
 })
 
