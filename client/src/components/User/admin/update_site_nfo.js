@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Formfield from '../../utils/Forms/formfield'
 import { update, generateData, isFormValid, populateFields } from '../../utils/Forms/formActions'
-import { updateUserData, clearUpdateUser} from '../../../actions/user_actions'
+import { getSiteData} from '../../../actions/site_actions'
 
 import { connect } from 'react-redux'
 
@@ -81,6 +81,19 @@ class UpateSiteNfo extends Component {
             }
         }
     }
+
+    componentDidMount() {
+        this.props.dispatch(getSiteData()).then(() => {
+            console.log(this.props.site.siteData[0]);
+
+            const newFormData = populateFields(this.state.formdata, this.props.site.siteData[0])
+
+            this.setState({
+                formdata: newFormData
+            })
+            
+        })
+    }
     
     updateForm = (element) => {
         const newFormData = update(element, this.state.formdata, 'site_info')
@@ -157,4 +170,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect()(UpateSiteNfo);
+export default connect(mapStateToProps)(UpateSiteNfo);
