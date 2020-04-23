@@ -15,7 +15,7 @@ class UserCart extends Component {
         loading: true,
         total: 0,
         showTotal: false,
-        showSucces: false
+        showSuccess: false
     }
 
     componentDidMount() {
@@ -53,6 +53,15 @@ class UserCart extends Component {
 
     removeFromCart = (id) => {}
 
+    showNoItemMessage = () => (
+        <div className="cart_no_items">
+            <FontAwesomeIcon icon={faFrown} />
+            <div>
+                You have no item
+            </div>
+        </div>
+    )
+
     render() {
         return (
             <UserLayout>
@@ -74,7 +83,18 @@ class UserCart extends Component {
                                 </div>
                             </div>
                         : 
-                            null
+                            this.state.showSuccess ?
+                                <div className="cart_success">
+                                    <FontAwesomeIcon icon={faFrown} />
+                                    <div>
+                                        THANK YOU FOR PURCHASING
+                                    </div>
+                                    <div>
+                                        YOUR ORDER IS COMPLETE NOW
+                                    </div>
+                                </div>
+                            :
+                                this.showNoItemMessage()
                     }
                 </div>
             </div>
