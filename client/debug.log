@@ -75,3 +75,11 @@
 [0424/022122.632:ERROR:crash_report_database_win.cc(445)] failed to read records
 [0424/023622.633:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
 [0424/023622.633:ERROR:crash_report_database_win.cc(445)] failed to read records
+[0424/025122.644:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
+[0424/025122.644:ERROR:crash_report_database_win.cc(445)] failed to read records
+[0424/030622.645:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
+[0424/030622.645:ERROR:crash_report_database_win.cc(445)] failed to read records
+[0424/032122.647:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
+[0424/032122.647:ERROR:crash_report_database_win.cc(445)] failed to read records
+[0424/033622.648:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
+[0424/033622.648:ERROR:crash_report_database_win.cc(445)] failed to read records
