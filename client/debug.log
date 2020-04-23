@@ -27,3 +27,13 @@
 [0423/201143.202:ERROR:crash_report_database_win.cc(445)] failed to read records
 [0423/214633.511:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
 [0423/214634.048:ERROR:crash_report_database_win.cc(445)] failed to read records
+[0423/215633.521:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
+[0423/215633.521:ERROR:crash_report_database_win.cc(445)] failed to read records
+[0423/215633.522:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
+[0423/215633.522:ERROR:crash_report_database_win.cc(445)] failed to read records
+[0423/220134.048:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
+[0423/220134.048:ERROR:crash_report_database_win.cc(445)] failed to read records
+[0423/221634.049:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
+[0423/221634.049:ERROR:crash_report_database_win.cc(445)] failed to read records
+[0423/223134.051:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
+[0423/223134.051:ERROR:crash_report_database_win.cc(445)] failed to read records

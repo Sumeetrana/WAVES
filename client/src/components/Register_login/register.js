@@ -160,11 +160,11 @@ class Register extends Component {
                                         </div>
                                     </div>
                                     <div>
-                                    <Formfield 
-                                        id={"email"}
-                                        formdata={this.state.formdata.email}
-                                        change={(element) => this.updateForm(element)}
-                                    />
+                                        <Formfield 
+                                            id={"email"}
+                                            formdata={this.state.formdata.email}
+                                            change={(element) => this.updateForm(element)}
+                                        />
                                     </div>
                                     <h2>Password</h2>
                                     <div className="form_block_two">
