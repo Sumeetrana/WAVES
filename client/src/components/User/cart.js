@@ -3,6 +3,7 @@ import UserLayout from '../../hoc/userLayout'
 
 import { connect } from 'react-redux'
 import { getCartItems } from '../../actions/user_actions'
+import UserProductBlock from '../utils/User/user_product_block'
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import faFrown from '@fortawesome/fontawesome-free-solid/faFrown'
@@ -32,11 +33,20 @@ class UserCart extends Component {
         }
     }
 
+    removeFromCart = (id) => {}
+
     render() {
         return (
             <UserLayout>
             <div>
-                cart
+                <h1>My Cart</h1>
+                <div className="user_cart">
+                    <UserProductBlock
+                        products={this.props.user}
+                        type="cart"
+                        removeItem={(id)=>this.removeFromCart(id)}
+                    />
+                </div>
             </div>
             </UserLayout>
         );
