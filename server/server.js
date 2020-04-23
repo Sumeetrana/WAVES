@@ -9,7 +9,7 @@ const path = require('path')
 const app = express();
 
 
-mongoose.connect('mongodb+srv://sumeet123:sumeet123@cluster0-uephq.mongodb.net/test?retryWrites=true&w=majority', { autoIndex: false }, { useNewUrlParser: true })
+mongoose.connect(process.env.DATABASE, { autoIndex: false }, { useNewUrlParser: true })
     .then(() => {
         console.log("Connection established");
         
