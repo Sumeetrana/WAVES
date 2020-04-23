@@ -66,7 +66,7 @@ const userSchema = new mongoose.Schema({
 userSchema.statics.findByToken = async function(token, cb) {
     let user = this;
 
-    jwt.verify(token, process.env.SECRET, (err, decode) => {
+    jwt.verify(token, SUPERSECRETPASSWORD123, (err, decode) => {
         user.findOne({ "_id": decode, "token": token }, (err, user) => {
             if (err) {
                 return cb(err)
