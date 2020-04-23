@@ -117,7 +117,8 @@ router.post('/addToCart', auth, (req, res) => {
                 duplicate = true
             }
         })
-
+        console.log("Value:", duplicate);
+        
         if (duplicate) {
             User.findOneAndUpdate(
                 { _id: req.user._id, "cart.id": mongoose.Types.ObjectId(req.query.productId)},

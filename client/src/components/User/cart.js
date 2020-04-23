@@ -54,7 +54,7 @@ class UserCart extends Component {
     removeFromCart = (id) => {
         this.props.dispatch(removeCartItem(id))
             .then(() => {
-                if (this.props.user.cartDetail <= 0) {
+                if (this.props.user.cartDetail.length <= 0) {
                     this.setState({
                         showTotal: false
                     })
@@ -74,6 +74,8 @@ class UserCart extends Component {
     )
 
     render() {
+        console.log(this.props.user);
+        
         return (
             <UserLayout>
             <div>
@@ -96,7 +98,7 @@ class UserCart extends Component {
                         : 
                             this.state.showSuccess ?
                                 <div className="cart_success">
-                                    <FontAwesomeIcon icon={faFrown} />
+                                    <FontAwesomeIcon icon={faSmile} />
                                     <div>
                                         THANK YOU FOR PURCHASING
                                     </div>

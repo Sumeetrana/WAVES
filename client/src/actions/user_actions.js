@@ -68,7 +68,9 @@ export function getCartItems(cartItems, userCart) {
             
             userCart.forEach(item => {
                 response.data.forEach((k, i) => {
-                    response.data[i].quantity = item.quantity;
+                    if(item.id === k._id){
+                        response.data[i].quantity = item.quantity;
+                    }
                 })
             })
             console.log(response.data)
