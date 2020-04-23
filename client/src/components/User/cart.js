@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import UserLayout from '../../hoc/userLayout'
 
 import { connect } from 'react-redux'
-import { getCartItems } from '../../actions/user_actions'
+import { getCartItems, removeCartItem } from '../../actions/user_actions'
 import UserProductBlock from '../utils/User/user_product_block'
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
@@ -51,7 +51,18 @@ class UserCart extends Component {
         })
     }
 
-    removeFromCart = (id) => {}
+    removeFromCart = (id) => {
+        this.props.dispatch(removeCartItem(id))
+            .then(() => {
+                if (this.props.user.cartDetail <= 0) {
+                    this.setState({
+                        showTotal: false
+                    })
+                } else {
+                    this.calculateTotal(this.props.user.cartDetail)
+                }
+            })
+    }
 
     showNoItemMessage = () => (
         <div className="cart_no_items">
@@ -96,7 +107,15 @@ class UserCart extends Component {
                             :
                                 this.showNoItemMessage()
                     }
+                    
                 </div>
+                {
+                    this.state.showTotal ?
+                        <div className="paypal_button_container">
+                            Paypal
+                        </div>
+                    : null
+                }
             </div>
             </UserLayout>
         );

@@ -8,6 +8,7 @@ const cloudinary = require('cloudinary')
 const mongoose = require('mongoose')
 
 const User = require('../models/user.model')
+const Product = require('../models/product.model')
 const auth = require('../middleware/auth')
 const admin = require('../middleware/admin')
 
@@ -148,6 +149,38 @@ router.post('/addToCart', auth, (req, res) => {
             )
         }
     })
+})
+
+router.get('/removeCartItem', auth, (req, res) => {
+    console.log(req.user);
+    
+    User.findOneAndUpdate(
+        {_id: req.user._id},
+        {
+            '$pull': {"cart": {"id": mongoose.Types.ObjectId(req.query._id)}}
+        },
+        {new: true},
+        (err, doc) => {
+            let cart = doc.cart
+            let array = cart.map(item => {
+                return mongoose.Types.ObjectId(item.id)
+            })
+            // console.log(cart);
+            
+            Product.
+            find({'_id': { $in: array}}). 
+            populate('brand').
+            populate('wood').
+            exec((err, cartDetail) => {
+                console.log(cartDetail);
+                
+                return res.status(200).json({
+                    cartDetail,
+                    cart
+                })
+            })
+        }
+    )
 })
 
 module.exports = router 

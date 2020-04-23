@@ -1,3 +1,19 @@
 [0423/175643.096:ERROR:settings.cc(320)] Settings magic is not 1129342067
 [0423/175643.121:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
 [0423/175643.121:ERROR:crash_report_database_win.cc(445)] failed to read records
+[0423/180643.121:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
+[0423/180643.121:ERROR:crash_report_database_win.cc(445)] failed to read records
+[0423/180643.121:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
+[0423/180643.121:ERROR:crash_report_database_win.cc(445)] failed to read records
+[0423/181143.128:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
+[0423/181143.128:ERROR:crash_report_database_win.cc(445)] failed to read records
+[0423/182643.129:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
+[0423/182643.129:ERROR:crash_report_database_win.cc(445)] failed to read records
+[0423/184143.133:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
+[0423/184143.133:ERROR:crash_report_database_win.cc(445)] failed to read records
+[0423/185643.136:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
+[0423/185643.136:ERROR:crash_report_database_win.cc(445)] failed to read records
+[0423/190638.913:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
+[0423/190638.914:ERROR:crash_report_database_win.cc(445)] failed to read records
+[0423/191143.186:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
+[0423/191143.186:ERROR:crash_report_database_win.cc(445)] failed to read records
