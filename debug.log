@@ -1,2 +1,4 @@
 [0424/011604.527:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
 [0424/011604.530:ERROR:crash_report_database_win.cc(445)] failed to read records
+[0424/014337.527:ERROR:file_io.cc(89)] ReadExactly: expected 448, observed 0
+[0424/014337.528:ERROR:crash_report_database_win.cc(445)] failed to read records
