@@ -77,6 +77,7 @@ router.get('/article_by_id', (req, res) => {
      populate('brand').
      populate('wood').
      exec((err, docs) => {
+         console.log(docs)
         return res.status(200).send(docs)
      })
 })
