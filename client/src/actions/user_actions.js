@@ -5,7 +5,9 @@ import { LOGIN_USER,
     LOGOUT_USER, 
     ADD_TO_CART_USER, 
     GET_CART_ITEMS_USER,
-    REMOVE_CART_ITEM_USER
+    REMOVE_CART_ITEM_USER,
+    UPDATE_DATA_USER,
+    CLEAR_UPDATE_USER_DATA
 } from './types'
 
 import { USER_SERVER, PRODUCT_SERVER } from '../components/utils/misc'
@@ -102,5 +104,22 @@ export function removeCartItem(id) {
     return {
         type: REMOVE_CART_ITEM_USER,
         payload: request
+    }
+}
+
+export function updateUserData(dataToSubmit) {
+    const request = axios.post(`${USER_SERVER}/update_profile`, dataToSubmit)
+        .then(response => response.data)
+
+    return {
+        type: UPDATE_DATA_USER,
+        payload: request
+    }
+}
+
+export function clearUpdateUser() {
+    return {
+        type: CLEAR_UPDATE_USER_DATA,
+        payload: ''
     }
 }

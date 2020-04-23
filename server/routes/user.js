@@ -184,4 +184,20 @@ router.get('/removeCartItem', auth, (req, res) => {
     )
 })
 
+router.post('/update_profile', auth, (req, res) => {
+    User.findOneAndUpdate(
+        {_id: req.user._id},
+        {
+            '$set': req.body
+        },
+        { new: true},
+        (err, doc) => {
+            if (err) {
+                return res.json({success: false, err})
+            }
+            res.status(200).send({success: true})
+        }
+    )
+})
+
 module.exports = router 
