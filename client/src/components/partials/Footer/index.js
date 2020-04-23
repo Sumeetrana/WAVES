@@ -5,8 +5,12 @@ import {faPhone} from '@fortawesome/fontawesome-free-solid'
 import {faClock} from '@fortawesome/fontawesome-free-solid'
 import {faEnvelope} from '@fortawesome/fontawesome-free-solid'
 
-const index = () => {
+const index = ({data}) => {
+    
     return (
+        
+        
+        data.siteData ?
         <footer className="bck_b_dark">
             <div className="container">
                 <div className="logo">
@@ -23,7 +27,7 @@ const index = () => {
                                 />
                                 <div className="nfo">
                                     <div>Address</div>
-                                    <div>Kramer 1234</div>
+                                    <div>{data.siteData[0].address}</div>
                                 </div>
                             </div>
                             <div className="tag">
@@ -33,7 +37,7 @@ const index = () => {
                                 />
                                 <div className="nfo">
                                     <div>Phone</div>
-                                    <div>98765-4310</div>
+                                    <div>{data.siteData[0].phone}</div>
                                 </div>
                             </div>
                             <div className="tag">
@@ -43,7 +47,7 @@ const index = () => {
                                 />
                                 <div className="nfo">
                                     <div>Working Hours</div>
-                                    <div>24 * 7 * 7 * 365</div>
+                                    <div>{data.siteData[0].hours}</div>
                                 </div>
                             </div>
                             <div className="tag">
@@ -53,7 +57,7 @@ const index = () => {
                                 />
                                 <div className="nfo">
                                     <div>Email</div>
-                                    <div>waves@gmail.com</div>
+                                    <div>{data.siteData[0].email}</div>
                                 </div>
                             </div>
                         </div>
@@ -67,6 +71,7 @@ const index = () => {
                 </div>
             </div>
         </footer>
+        : null
     )
 }
 
