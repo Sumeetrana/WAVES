@@ -9,7 +9,7 @@ const path = require('path')
 const app = express();
 
 
-mongoose.connect(process.env.DATABASE, { autoIndex: false })
+mongoose.connect(encodeURI(process.env.DATABASE), { autoIndex: false }, { useNewUrlParser: true })
     .then(() => {
         console.log("Connection established");
         
