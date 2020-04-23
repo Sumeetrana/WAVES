@@ -9,13 +9,7 @@ const path = require('path')
 const app = express();
 
 
-mongoose.connect(process.env.DATABASE,{
-        auth: {
-            user: "USER",
-            password: "PASS"
-        }
-    }
-    , { autoIndex: false }, { useNewUrlParser: true })
+mongoose.connect(process.env.DATABASE, { autoIndex: false }, { useNewUrlParser: true })
     .then(() => {
         console.log("Connection established");
         
