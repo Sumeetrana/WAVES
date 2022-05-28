@@ -16,7 +16,7 @@ const store = createStore(Reducer, applyMiddleware(promiseMiddleware, thunk))
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter>  
       <Routes />
     </BrowserRouter>
   </Provider>,
