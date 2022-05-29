@@ -18,7 +18,8 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>  
       <Routes />
-    </BrowserRouter>
+    </BrowserRouter>    
+    
   </Provider>,
   document.getElementById('root')
 );
